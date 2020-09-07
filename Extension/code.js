@@ -8,13 +8,14 @@ setTimeout(function () {
   window.addEventListener('mousedown', onDownEvent);
   window.addEventListener('mouseup', onUpEvent);
 
-  document.addEventListener('keydown', downKey);
-  document.addEventListener('keyup', upKey);
+  document.addEventListener('keydown', downKey, true);
+  document.addEventListener('keyup', upKey, true);
   document.addEventListener('mousemove', mouseMove)
   function downKey(e) {
     nowDownEvent = performance.now()
     var key = e.key.toLowerCase();
     if (key === 't' && !pressed) {
+      e.preventDefault();
       pressed = true;
       chrome.runtime.sendMessage({ eventPlease: "trusted", x: cx, y: cy, mouse: "D" }, function (response) {
         console.log(response.yourEvent);
@@ -31,6 +32,7 @@ setTimeout(function () {
     nowUpEvent = performance.now()
     var key = e.key.toLowerCase();
     if (key === 't' && pressed) {
+      e.preventDefault();
       pressed = false;
       chrome.runtime.sendMessage({ eventPlease: "trusted", x: cx, y: cy, mouse: "U" }, function (response) {
         console.log(response.yourEvent);

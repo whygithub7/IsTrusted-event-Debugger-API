@@ -22,13 +22,13 @@ chrome.runtime.onMessage.addListener(
     xC = request.x; yC = request.y;
     if (request.mouse == "D") {
       console.log("down");
-      chrome.debugger.sendCommand({ tabId: sender.tab.id }, "Input.dispatchMouseEvent", { type: "mousePressed", x: xC, y: yC, button: "left" }, function (e) { console.log('clickDown', e) });
+      chrome.debugger.sendCommand({ tabId: sender.tab.id }, "Input.dispatchMouseEvent", { type: "mousePressed", x: xC, y: yC, button: "left", clickCount: 1 }, function (e) { console.log('clickDown', e) });
 
 
     } else if (request.mouse == "U") {
       console.log("up");
 
-      chrome.debugger.sendCommand({ tabId: sender.tab.id }, "Input.dispatchMouseEvent", { type: "mouseReleased", x: xC, y: yC, button: "left" }, function (e) { console.log('clickUp', e) });
+      chrome.debugger.sendCommand({ tabId: sender.tab.id }, "Input.dispatchMouseEvent", { type: "mouseReleased", x: xC, y: yC, button: "left", clickCount: 1 }, function (e) { console.log('clickUp', e) });
 
     }
 
