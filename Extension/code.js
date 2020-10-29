@@ -5,8 +5,6 @@ var n = 0;
 var nowDownEvent, nowUpEvent;
 setTimeout(function () {
 
-  window.addEventListener('mousedown', onDownEvent);
-  window.addEventListener('mouseup', onUpEvent);
 
   document.addEventListener('keydown', downKey, true);
   document.addEventListener('keyup', upKey, true);
@@ -54,8 +52,6 @@ setTimeout(function () {
 
 }, 300);
 
-function onDownEvent(e) { n++; console.log(e, n, performance.now() - nowDownEvent); }
-function onUpEvent(e) { console.log(e, performance.now() - nowUpEvent); }
 
 
 
